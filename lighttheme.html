@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Surbhi Sakshi – Premium Builder Floors | Dwarka Expressway</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap"
+        rel="stylesheet" />
+  
+    <style>
+        :root {
+            /* ── Palette remapped from Style 1 ── */
+            --bg:        #FAF9F6;
+            --bg2:       #f0eeeb;
+            --bg3:       #e6e4e1;
+            --ink:       #2D3142;          /* Style-1 --primary  */
+            --ink2:      #1e2233;          /* darker shade of --primary */
+            --gold:      #EF8354;          /* Style-1 --accent   */
+            --gold-lt:   #FFA07A;          /* Style-1 --accent-light */
+            --gold-pale: rgba(239,131,84,.10);
+            --mist:      #6B7280;          /* Style-1 --text-light */
+            --border:    rgba(239,131,84,.20);
+            --border2:   rgba(45,49,66,.09);
+            --white:     #ffffff;
+            --shadow:    rgba(45,49,66,.08);
+            --shadow-lg: rgba(45,49,66,.16);
+            --gap:       100px;
+            --ease:      cubic-bezier(.22,1,.36,1);
+        }
+
+        *,*::before,*::after { box-sizing:border-box; margin:0; padding:0 }
+        html { scroll-behavior:smooth }
+        body {
+            background:var(--bg);
+            color:var(--ink);
+            font-family:'DM Sans',sans-serif;
+            overflow-x:hidden;
+            -webkit-font-smoothing:antialiased
+        }
+        img { display:block; width:100%; height:100%; object-fit:cover }
+        a { color:inherit; text-decoration:none }
+        ul { list-style:none }
+
+        /* ── Scrollbar ── */
+        ::-webkit-scrollbar { width:4px }
+        ::-webkit-scrollbar-track { background:var(--bg2) }
+        ::-webkit-scrollbar-thumb { background:var(--gold); border-radius:4px }
+
+        /* ── Noise grain ── */
+        body::before {
+            content:'';
+            position:fixed; inset:0;
+            background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+            opacity:.015; pointer-events:none; z-index:9998
+        }
+
+        /* ── Cursor glow ── */
+        #cg {
+            position:fixed;
+            width:320px; height:320px;
+            border-radius:50%;
+            background:radial-gradient(circle,rgba(239,131,84,.06) 0%,transparent 68%);
+            pointer-events:none;
+            transform:translate(-50%,-50%);
+            z-index:0
+        }
+
+        /* ── Utility ── */
+        .gold-line { display:flex; align-items:center; gap:14px; margin-bottom:20px }
+        .gold-line::before { content:''; display:block; width:36px; height:1px; background:var(--gold) }
+        .gold-line span {
+            font-size:.64rem; letter-spacing:.28em;
+            text-transform:uppercase; color:var(--gold); font-weight:600
+        }
+
+        /* ── Reveal animations ── */
+        .reveal { opacity:0; transform:translateY(36px); transition:opacity .75s var(--ease),transform .75s var(--ease) }
+        .reveal.in { opacity:1; transform:none }
+        .rl { opacity:0; transform:translateX(-44px); transition:opacity .75s var(--ease),transform .75s var(--ease) }
+        .rl.in { opacity:1; transform:none }
+        .rr { opacity:0; transform:translateX(44px); transition:opacity .75s var(--ease),transform .75s var(--ease) }
+        .rr.in { opacity:1; transform:none }
+        .rs { opacity:0; transform:scale(.94); transition:opacity .75s var(--ease),transform .75s var(--ease) }
+        .rs.in { opacity:1; transform:none }
+        .d1 { transition-delay:.08s!important }
+        .d2 { transition-delay:.17s!important }
+        .d3 { transition-delay:.26s!important }
+        .d4 { transition-delay:.35s!important }
+        .d5 { transition-delay:.44s!important }
+        .d6 { transition-delay:.52s!important }
+
+        /* ── NAV ── */
+        nav {
+            position:fixed; top:0; left:0; right:0; z-index:1000;
+            padding:22px 5%;
+            display:flex; justify-content:space-between; align-items:center;
+            transition:all .4s var(--ease)
+        }
+        nav.on {
+            background:rgba(250,249,246,.94);
+            backdrop-filter:blur(18px);
+            padding:14px 5%;
+            border-bottom:1px solid var(--border);
+            box-shadow:0 2px 28px var(--shadow)
+        }
+        .nl { display:flex; flex-direction:column; line-height:1 }
+        .nl .n {
+            font-family:'Cormorant Garamond',serif;
+            font-size:1.55rem; font-weight:600; color:var(--ink); letter-spacing:.04em
+        }
+        .nl .t { font-size:.53rem; letter-spacing:.28em; text-transform:uppercase; color:var(--gold); margin-top:3px }
+        .nlinks { display:flex; gap:30px; align-items:center }
+        .nlinks a {
+            font-size:.74rem; letter-spacing:.1em; text-transform:uppercase;
+            color:var(--mist); transition:color .3s; font-weight:500
+        }
+        .nlinks a:hover { color:var(--gold) }
+        .ncta {
+            background:var(--gold); color:#fff; border:none;
+            padding:11px 24px; font-size:.72rem; letter-spacing:.13em;
+            text-transform:uppercase; cursor:pointer;
+            font-family:'DM Sans',sans-serif; font-weight:600; transition:all .3s
+        }
+        .ncta:hover {
+            background:var(--gold-lt);
+            transform:translateY(-1px);
+            box-shadow:0 8px 24px rgba(239,131,84,.35)
+        }
+
+        /* hamburger */
+        .hbg { display:none; flex-direction:column; gap:5px; cursor:pointer; z-index:1001 }
+        .hbg span { display:block; width:24px; height:1.5px; background:var(--ink); transition:all .3s }
+        .hbg.o span:nth-child(1) { transform:rotate(45deg) translate(4px,4px) }
+        .hbg.o span:nth-child(2) { opacity:0 }
+        .hbg.o span:nth-child(3) { transform:rotate(-45deg) translate(4px,-4px) }
+
+        .mmenu {
+            position:fixed; inset:0; background:var(--bg); z-index:999;
+            display:none; flex-direction:column;
+            justify-content:center; align-items:center; gap:40px
+        }
+        .mmenu.o { display:flex }
+        .mmenu a {
+            font-family:'Cormorant Garamond',serif;
+            font-size:2.6rem; font-weight:300; color:var(--ink); transition:color .3s
+        }
+        .mmenu a:hover { color:var(--gold) }
+
+        /* ── HERO ── */
+        #hero {
+            position:relative; height:100vh; min-height:660px;
+            overflow:hidden; display:flex; align-items:flex-end
+        }
+        .hbg2 {
+            position:absolute; inset:0; z-index:0;
+            background:url('https://raw.githubusercontent.com/bhuvnesh6/sakshisurbhi/refs/heads/main/img/heroimgsurbhi.avif') center/cover no-repeat
+        }
+        .hbg2::after {
+            content:''; position:absolute; inset:0;
+            background:linear-gradient(to top,
+                rgba(250,249,246,.97) 0%,
+                rgba(250,249,246,.48) 46%,
+                rgba(250,249,246,.08) 100%)
+        }
+        .hvb {
+            position:absolute; top:50%; left:50%;
+            transform:translate(-50%,-50%);
+            width:76px; height:76px; border-radius:50%;
+            border:1.5px solid rgba(239,131,84,.5);
+            display:flex; align-items:center; justify-content:center;
+            cursor:pointer; transition:all .35s; z-index:5;
+            background:rgba(255,255,255,.55); backdrop-filter:blur(8px)
+        }
+        .hvb:hover {
+            background:rgba(239,131,84,.1);
+            border-color:var(--gold);
+            transform:translate(-50%,-50%) scale(1.1)
+        }
+        .hvb svg { width:20px; height:20px; fill:var(--gold); margin-left:3px }
+
+        .hc { position:relative; z-index:2; padding:0 5% 80px; width:100% }
+
+        .hbadge {
+            display:inline-flex; align-items:center; gap:10px;
+            border:1px solid rgba(239,131,84,.28); padding:7px 18px; margin-bottom:28px;
+            background:rgba(255,255,255,.65); backdrop-filter:blur(10px)
+        }
+        .hbadge .dot {
+            width:7px; height:7px; border-radius:50%;
+            background:var(--gold); animation:pulse 2s infinite
+        }
+        .hbadge span {
+            font-size:.63rem; letter-spacing:.28em;
+            text-transform:uppercase; color:var(--gold); font-weight:600
+        }
+        @keyframes pulse {
+            0%,100% { opacity:1; transform:scale(1) }
+            50%      { opacity:.3; transform:scale(.5) }
+        }
+        .htitle {
+            font-family:'Cormorant Garamond',serif;
+            font-weight:300; font-size:clamp(4rem,9.5vw,8rem);
+            line-height:1; letter-spacing:-.025em; color:var(--ink); margin-bottom:10px
+        }
+        .htitle em { font-style:italic; color:var(--gold) }
+        .hsub {
+            font-size:clamp(1rem,2.2vw,1.35rem); color:var(--mist);
+            font-weight:400; margin-bottom:38px; letter-spacing:.03em
+        }
+        .hmeta { display:flex; gap:44px; flex-wrap:wrap; margin-bottom:44px }
+        .hmeta .v { font-family:'Cormorant Garamond',serif; font-size:1.75rem; font-weight:600; color:var(--ink) }
+        .hmeta .l { font-size:.6rem; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); margin-top:4px }
+        .ha { display:flex; gap:14px; flex-wrap:wrap }
+        .bp {
+            background:var(--gold); color:#fff;
+            padding:15px 36px; font-size:.78rem; letter-spacing:.14em;
+            text-transform:uppercase; font-weight:600; cursor:pointer;
+            border:none; font-family:'DM Sans',sans-serif; transition:all .3s
+        }
+        .bp:hover {
+            background:var(--gold-lt);
+            transform:translateY(-2px);
+            box-shadow:0 12px 36px rgba(239,131,84,.35)
+        }
+        .bo {
+            background:transparent;
+            border:1.5px solid rgba(45,49,66,.2);
+            color:var(--ink); padding:15px 36px;
+            font-size:.78rem; letter-spacing:.14em; text-transform:uppercase;
+            cursor:pointer; font-family:'DM Sans',sans-serif;
+            transition:all .3s; font-weight:500
+        }
+        .bo:hover { border-color:var(--gold); color:var(--gold) }
+
+        .hscroll {
+            position:absolute; bottom:32px; right:5%;
+            display:flex; flex-direction:column; align-items:center;
+            gap:8px; opacity:.45; animation:flt 3s ease-in-out infinite; z-index:5
+        }
+        @keyframes flt { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+        .hscroll .ln { width:1px; height:48px; background:linear-gradient(to bottom,transparent,var(--gold)) }
+        .hscroll span {
+            font-size:.53rem; letter-spacing:.3em;
+            text-transform:uppercase; color:var(--gold); writing-mode:vertical-rl
+        }
+
+        /* ── TICKER ── */
+        .ticker { background:var(--gold); padding:13px 0; overflow:hidden }
+        .ti { display:flex; gap:56px; animation:tkr 28s linear infinite; white-space:nowrap }
+        .ti span { font-size:.68rem; letter-spacing:.24em; text-transform:uppercase; color:#fff; font-weight:600 }
+        .ti .sp { color:rgba(255,255,255,.38) }
+        @keyframes tkr { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+        /* ── OVERVIEW ── */
+        #overview { padding:var(--gap) 5%; background:var(--bg) }
+        .og {
+            display:grid; grid-template-columns:1fr 1fr;
+            gap:80px; align-items:center; max-width:1300px; margin:0 auto
+        }
+        .ois { position:relative; height:580px }
+        .ois .im { position:absolute; top:0; left:0; right:72px; bottom:72px; overflow:hidden; background:var(--bg3) }
+        .ois .ia { position:absolute; bottom:0; right:0; width:52%; height:52%; border:5px solid var(--bg); overflow:hidden }
+        .ois .ist {
+            position:absolute; top:36px; right:52px; z-index:5;
+            background:var(--white); border:1px solid var(--border);
+            padding:20px 24px; box-shadow:0 8px 40px var(--shadow)
+        }
+        .ois .ist .num { font-family:'Cormorant Garamond',serif; font-size:2.2rem; color:var(--gold); font-weight:600 }
+        .ois .ist .txt { font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:var(--mist); margin-top:4px }
+
+        .sh {
+            font-family:'Cormorant Garamond',serif;
+            font-size:clamp(2.4rem,5vw,3.8rem);
+            font-weight:300; line-height:1.1; margin-bottom:20px; color:var(--ink)
+        }
+        .ot p { color:var(--mist); line-height:1.85; font-weight:400; margin-bottom:30px; font-size:.9rem }
+
+        .cpills { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:32px }
+        .cp {
+            border:1.5px solid var(--border); padding:9px 20px;
+            font-size:.72rem; letter-spacing:.14em; text-transform:uppercase;
+            color:var(--gold); transition:all .3s; font-weight:600
+        }
+        .cp:hover { background:var(--gold-pale); border-color:var(--gold) }
+
+        .pbox {
+            background:var(--white); border-left:3px solid var(--gold);
+            padding:24px 28px; margin-bottom:28px; box-shadow:0 4px 24px var(--shadow)
+        }
+        .pbox .from { font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:var(--mist) }
+        .pbox .amt { font-family:'Cormorant Garamond',serif; font-size:2.5rem; font-weight:600; color:var(--ink) }
+        .pbox .onw { font-size:.82rem; color:var(--gold); font-style:italic }
+        .pbox .note { font-size:.7rem; color:var(--mist); margin-top:8px }
+
+        .ttags { display:flex; flex-wrap:wrap; gap:10px }
+        .tt {
+            background:var(--bg2); border:1.5px solid var(--border2);
+            padding:9px 16px; font-size:.72rem; color:var(--mist);
+            letter-spacing:.05em; transition:all .3s; font-weight:500
+        }
+        .tt:hover { border-color:var(--border); color:var(--gold); background:var(--gold-pale) }
+
+        /* ── VIDEO SECTION ── */
+        #vs { position:relative; height:520px; overflow:hidden }
+        .vbg { position:absolute; inset:0 }
+        .vbg img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover }
+        .vbg::after {
+            content:''; position:absolute; inset:0;
+            background:rgba(250,249,246,.72)
+        }
+        .vc {
+            position:relative; z-index:2; height:100%;
+            display:flex; flex-direction:column; align-items:center;
+            justify-content:center; gap:28px; text-align:center; padding:0 5%
+        }
+        .vc h2 {
+            font-family:'Cormorant Garamond',serif;
+            font-size:clamp(2.2rem,5vw,4rem); font-weight:300; color:var(--ink)
+        }
+        .pb {
+            width:88px; height:88px; border-radius:50%;
+            border:1.5px solid rgba(239,131,84,.5);
+            display:flex; align-items:center; justify-content:center;
+            cursor:pointer; transition:all .35s;
+            background:rgba(255,255,255,.7); backdrop-filter:blur(8px)
+        }
+        .pb:hover {
+            background:rgba(239,131,84,.08);
+            border-color:var(--gold);
+            transform:scale(1.1);
+            box-shadow:0 0 50px rgba(239,131,84,.2)
+        }
+        .pb svg { width:26px; height:26px; fill:var(--gold); margin-left:4px }
+
+        /* ── LOCATION ── */
+        #location { padding:var(--gap) 5%; background:var(--bg2) }
+        .li { max-width:1300px; margin:0 auto }
+        .sh2 {
+            font-family:'Cormorant Garamond',serif;
+            font-size:clamp(2.4rem,5vw,3.8rem); font-weight:300; line-height:1.1; color:var(--ink)
+        }
+        .sh2 em { font-style:italic; color:var(--gold) }
+        .lg { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start }
+        .lmp {
+            background:var(--bg3); border:1px solid var(--border2);
+            height:420px; display:flex; align-items:center;
+            justify-content:center; flex-direction:column; gap:12px;
+            overflow:hidden; position:relative
+        }
+        .lmp img { position:absolute; inset:0; opacity:.5; width:100%; height:100%; object-fit:cover }
+        .mo {
+            position:relative; z-index:2; text-align:center;
+            background:rgba(250,249,246,.85); padding:14px 22px; backdrop-filter:blur(4px)
+        }
+        .mo span { font-size:.67rem; letter-spacing:.24em; text-transform:uppercase; color:var(--gold); font-weight:600 }
+
+        .dc { display:grid; grid-template-columns:1fr 1fr; gap:14px }
+        .dcard {
+            background:var(--white); border:1px solid var(--border2);
+            padding:20px; transition:all .35s; box-shadow:0 2px 12px var(--shadow)
+        }
+        .dcard:hover { border-color:var(--border); transform:translateY(-3px); box-shadow:0 8px 32px rgba(239,131,84,.14) }
+        .dcard .ic { font-size:1.4rem; margin-bottom:8px }
+        .dcard .pl { font-size:.78rem; font-weight:600; color:var(--ink); margin-bottom:4px }
+        .dcard .km { font-family:'Cormorant Garamond',serif; font-size:1.7rem; font-weight:600; color:var(--gold) }
+        .dcard .lb { font-size:.58rem; letter-spacing:.2em; text-transform:uppercase; color:var(--mist) }
+
+        .lh { margin-top:28px; display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border) }
+        .lhi { background:var(--white); padding:24px; text-align:center }
+        .lhi .big { font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:600; color:var(--gold) }
+        .lhi .sm { font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:var(--mist); margin-top:6px }
+
+        /* ── GALLERY ── */
+        #gallery { padding:var(--gap) 5%; background:var(--bg) }
+        .gi { max-width:1300px; margin:0 auto }
+        .gg { display:grid; grid-template-columns:repeat(12,1fr); gap:8px; margin-top:48px }
+        .gitem { overflow:hidden; position:relative; cursor:pointer }
+        .gitem img { transition:transform .65s var(--ease); width:100%; height:100%; object-fit:cover }
+        .gitem:hover img { transform:scale(1.06) }
+        .g1 { grid-column:span 7; grid-row:span 2; height:480px }
+        .g2 { grid-column:span 5; height:236px }
+        .g3 { grid-column:span 5; height:236px }
+        .g4 { grid-column:span 4; height:280px }
+        .g5 { grid-column:span 4; height:280px }
+        .g6 { grid-column:span 4; height:280px }
+        .g7 { grid-column:span 6; height:240px }
+        .g8 { grid-column:span 6; height:240px }
+        .gcta { text-align:center; margin-top:40px }
+        .gcta p { color:var(--mist); font-size:.8rem; margin-top:12px }
+
+        /* ── AMENITIES ── */
+        #amenities { padding:var(--gap) 5%; background:var(--bg2) }
+        .ai { max-width:1300px; margin:0 auto }
+        .agrid { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:18px; margin-top:52px }
+        .acard {
+            background:var(--white); border:1px solid var(--border2);
+            padding:28px 22px; transition:all .4s var(--ease);
+            position:relative; overflow:hidden; box-shadow:0 2px 12px var(--shadow)
+        }
+        .acard::before {
+            content:''; position:absolute; bottom:0; left:0; right:0; height:2px;
+            background:linear-gradient(90deg,transparent,var(--gold),transparent);
+            transform:scaleX(0); transition:.4s
+        }
+        .acard:hover::before { transform:scaleX(1) }
+        .acard:hover { border-color:var(--border); transform:translateY(-4px); box-shadow:0 12px 36px rgba(239,131,84,.12) }
+        .aicon { font-size:1.9rem; margin-bottom:14px }
+        .aname { font-size:.85rem; font-weight:600; color:var(--ink); margin-bottom:5px }
+        .adet { font-size:.7rem; color:var(--mist) }
+        .acat { font-size:.58rem; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); margin-bottom:10px; font-weight:600 }
+
+        /* ── INTERIORS ── */
+        #interiors { padding:var(--gap) 5%; background:var(--bg) }
+        .ii { max-width:1300px; margin:0 auto }
+        .itabs { display:flex; border-bottom:1px solid var(--border2); margin-bottom:48px; overflow-x:auto }
+        .itab {
+            padding:14px 28px; font-size:.73rem; letter-spacing:.14em; text-transform:uppercase;
+            color:var(--mist); cursor:pointer; border-bottom:2px solid transparent;
+            margin-bottom:-1px; white-space:nowrap; transition:all .3s; font-weight:500
+        }
+        .itab.a { color:var(--gold); border-color:var(--gold) }
+        .itab:hover { color:var(--ink) }
+        .ipanel { display:none }
+        .ipanel.a { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center }
+        .isl { display:flex; flex-direction:column }
+        .sr { display:flex; justify-content:space-between; align-items:center; padding:16px 0; border-bottom:1px solid var(--border2); transition:all .3s }
+        .sr:hover { padding-left:10px; border-color:var(--border) }
+        .sr .sn { font-size:.82rem; color:var(--mist) }
+        .sr .sv { font-size:.82rem; color:var(--ink); text-align:right; font-weight:600 }
+        .iimg { height:420px; overflow:hidden; border:1px solid var(--border2) }
+        .iimg img { width:100%; height:100%; object-fit:cover; transition:transform .65s var(--ease) }
+        .iimg:hover img { transform:scale(1.04) }
+
+        /* ── FLOOR PLANS ── */
+        #floorplans { padding:var(--gap) 5%; background:var(--bg2) }
+        .fpi { max-width:1300px; margin:0 auto }
+        .fptabs { display:flex; gap:14px; margin-bottom:48px; flex-wrap:wrap }
+        .fptab {
+            padding:12px 28px; border:1.5px solid var(--border2);
+            font-size:.73rem; letter-spacing:.14em; text-transform:uppercase;
+            color:var(--mist); cursor:pointer; transition:all .3s;
+            font-weight:500; background:var(--white)
+        }
+        .fptab.a,.fptab:hover { border-color:var(--gold); color:var(--gold); background:var(--gold-pale) }
+        .fpc { display:none }
+        .fpc.a { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center }
+        .fpimg {
+            background:var(--white); border:1px solid var(--border2);
+            padding:32px; height:420px; display:flex; align-items:center;
+            justify-content:center; overflow:hidden; box-shadow:0 4px 24px var(--shadow)
+        }
+        .fpimg img { object-fit:contain }
+        .fpd h3 { font-family:'Cormorant Garamond',serif; font-size:2.6rem; font-weight:300; margin-bottom:8px; color:var(--ink) }
+        .fpd .fpp { font-size:.8rem; color:var(--gold); letter-spacing:.1em; margin-bottom:28px; font-weight:600 }
+        .fptbl { width:100%; border-collapse:collapse; margin-bottom:28px }
+        .fptbl td { padding:13px 0; border-bottom:1px solid var(--border2); font-size:.82rem }
+        .fptbl td:first-child { color:var(--mist) }
+        .fptbl td:last-child { color:var(--ink); text-align:right; font-weight:600 }
+
+        /* ── WHY ── */
+        #why { padding:var(--gap) 5%; background:var(--bg); position:relative; overflow:hidden }
+        #why::before {
+            content:'SURBHI SAKSHI'; position:absolute; top:50%; left:50%;
+            transform:translate(-50%,-50%);
+            font-family:'Bebas Neue',sans-serif;
+            font-size:clamp(5rem,14vw,13rem);
+            color:rgba(239,131,84,.04);
+            letter-spacing:.15em; white-space:nowrap; pointer-events:none
+        }
+        .wi { max-width:1300px; margin:0 auto; position:relative; z-index:1 }
+        .wg { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--border2); margin-top:60px }
+        .wcard { background:var(--bg); padding:44px 34px; transition:background .4s }
+        .wcard:hover { background:var(--white) }
+        .wnum {
+            font-family:'Cormorant Garamond',serif; font-size:3.5rem; font-weight:300;
+            color:rgba(239,131,84,.16); line-height:1; margin-bottom:16px
+        }
+        .wtt { font-size:.95rem; font-weight:600; color:var(--ink); margin-bottom:12px }
+        .wd { font-size:.8rem; color:var(--mist); line-height:1.85 }
+
+        /* ── CTA ── */
+        #cta { padding:110px 5%; background:var(--ink2); text-align:center; position:relative; overflow:hidden }
+        #cta::before {
+            content:''; position:absolute; inset:0;
+            background:radial-gradient(ellipse at center,rgba(239,131,84,.1) 0%,transparent 72%)
+        }
+        .ctah {
+            font-family:'Cormorant Garamond',serif;
+            font-size:clamp(2.5rem,6vw,5rem); font-weight:300;
+            max-width:760px; margin:0 auto 18px; line-height:1.1; color:#FAF9F6;
+            position:relative; z-index:1
+        }
+        .ctas {
+            color:rgba(250,249,246,.5); max-width:460px; margin:0 auto 48px;
+            font-weight:300; line-height:1.75; font-size:.9rem; position:relative; z-index:1
+        }
+        .ctaform {
+            display:flex; flex-wrap:wrap; justify-content:center; gap:14px;
+            max-width:620px; margin:0 auto; position:relative; z-index:1
+        }
+        .ctaform input {
+            flex:1; min-width:170px;
+            background:rgba(250,249,246,.07);
+            border:1px solid rgba(250,249,246,.14);
+            padding:16px 20px; color:#FAF9F6;
+            font-family:'DM Sans',sans-serif; font-size:.85rem; outline:none; transition:border .3s
+        }
+        .ctaform input:focus { border-color:rgba(239,131,84,.5) }
+        .ctaform input::placeholder { color:rgba(250,249,246,.38) }
+        .ctaform button {
+            background:var(--gold); border:none; color:#fff;
+            padding:16px 36px; font-size:.78rem; letter-spacing:.15em;
+            text-transform:uppercase; font-weight:600; cursor:pointer;
+            font-family:'DM Sans',sans-serif; transition:all .3s
+        }
+        .ctaform button:hover { background:var(--gold-lt); transform:translateY(-2px); box-shadow:0 10px 32px rgba(239,131,84,.38) }
+        .ctanote { font-size:.62rem; color:rgba(250,249,246,.32); margin-top:16px; position:relative; z-index:1 }
+
+        /* ── FOOTER ── */
+        footer { background:var(--ink2); border-top:1px solid rgba(250,249,246,.06); padding:60px 5% 32px }
+        .fg { display:grid; grid-template-columns:2fr 1fr 1fr; gap:60px; max-width:1300px; margin:0 auto 52px }
+        .fb .fn { font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:300; color:#FAF9F6; margin-bottom:6px }
+        .fb .ft { font-size:.58rem; letter-spacing:.28em; text-transform:uppercase; color:var(--gold); margin-bottom:18px }
+        .fb p { font-size:.8rem; color:rgba(250,249,246,.42); line-height:1.85; max-width:290px }
+        .fc h4 { font-size:.58rem; letter-spacing:.24em; text-transform:uppercase; color:var(--gold); margin-bottom:18px; font-weight:600 }
+        .fc ul { display:flex; flex-direction:column; gap:12px }
+        .fc ul li a { font-size:.82rem; color:rgba(250,249,246,.42); transition:color .3s }
+        .fc ul li a:hover { color:#FAF9F6 }
+        .fbot {
+            max-width:1300px; margin:0 auto; padding-top:24px;
+            border-top:1px solid rgba(250,249,246,.06);
+            display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px
+        }
+        .fbot p { font-size:.7rem; color:rgba(250,249,246,.32) }
+
+        /* ── MODAL ── */
+        .modal {
+            position:fixed; inset:0; z-index:9999;
+            background:rgba(30,34,51,.93);
+            display:none; align-items:center; justify-content:center
+        }
+        .modal.o { display:flex }
+        .mclose { position:absolute; top:24px; right:32px; font-size:2.2rem; color:#FAF9F6; cursor:pointer; opacity:.65; transition:opacity .3s }
+        .mclose:hover { opacity:1 }
+        .mvid { width:90vw; max-width:920px; aspect-ratio:16/9; background:#000 }
+        .mvph { display:flex; justify-content:center; align-items:center; padding:40px 20px }
+        .video-wrapper {
+            width:100%; max-width:420px; aspect-ratio:9/16;
+            border-radius:18px; overflow:hidden;
+            box-shadow:0 20px 50px rgba(0,0,0,.28); background:#000
+        }
+        .video-wrapper video { width:100%; height:100%; object-fit:cover }
+
+        /* ── BACK TO TOP ── */
+        #btt {
+            position:fixed; bottom:32px; right:32px;
+            width:48px; height:48px; background:var(--gold);
+            display:flex; align-items:center; justify-content:center;
+            cursor:pointer; opacity:0; pointer-events:none; transition:all .4s; z-index:500
+        }
+        #btt.s { opacity:1; pointer-events:auto }
+        #btt:hover { background:var(--gold-lt); transform:translateY(-3px); box-shadow:0 8px 24px rgba(239,131,84,.32) }
+        #btt svg { width:20px; height:20px; stroke:#fff; stroke-width:2.2; fill:none }
+
+        /* ── LOADER ── */
+        #loader {
+            position:fixed; inset:0; background:var(--bg); z-index:99999;
+            display:flex; flex-direction:column; align-items:center;
+            justify-content:center; gap:24px; transition:opacity .6s var(--ease),visibility .6s
+        }
+        #loader.done { opacity:0; visibility:hidden }
+        .llogo {
+            font-family:'Cormorant Garamond',serif; font-size:2.6rem; font-weight:300;
+            color:var(--ink); opacity:0; animation:fdu .8s .3s forwards
+        }
+        .lbar { width:200px; height:1px; background:rgba(45,49,66,.1) }
+        .lbar div { height:100%; background:var(--gold); width:0; animation:ld 1.8s ease forwards }
+        .lsub {
+            font-size:.57rem; letter-spacing:.34em; text-transform:uppercase;
+            color:var(--mist); opacity:0; animation:fdu .6s .5s forwards
+        }
+        @keyframes ld { 0%{width:0} 100%{width:100%} }
+        @keyframes fdu { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:none} }
+
+
+        /* ════════════════════════════════════════════
+           RESPONSIVE — Tablet  (≤ 1024px)
+        ════════════════════════════════════════════ */
+        @media(max-width:1024px) {
+            :root { --gap:80px }
+
+            .og { grid-template-columns:1fr; gap:48px }
+            .ois { height:400px }
+            .ois .ia { width:44%; height:44% }
+
+            .lg { grid-template-columns:1fr; gap:40px }
+            .lmp { height:340px }
+
+            .ipanel.a { grid-template-columns:1fr; gap:36px }
+            .iimg { height:300px }
+
+            .fpc.a { grid-template-columns:1fr; gap:40px }
+            .fpimg { height:320px }
+
+            .wg { grid-template-columns:1fr 1fr }
+
+            .fg { grid-template-columns:1fr 1fr; gap:40px }
+
+            /* gallery collapses gracefully */
+            .g1 { grid-column:span 12; height:300px; grid-row:span 1 }
+            .g2,.g3 { grid-column:span 6; height:200px }
+            .g4,.g5,.g6 { grid-column:span 4; height:200px }
+            .g7,.g8 { grid-column:span 6; height:180px }
+
+            .hmeta { gap:28px }
+        }
+
+        /* ════════════════════════════════════════════
+           RESPONSIVE — Mobile  (≤ 768px)
+        ════════════════════════════════════════════ */
+        @media(max-width:768px) {
+            :root { --gap:60px }
+
+            /* nav */
+            .nlinks,.ncta { display:none }
+            .hbg { display:flex }
+
+            /* hero */
+            .hc { padding:0 5% 60px }
+            #hero { min-height:580px }
+            .htitle { font-size:clamp(2.8rem,12vw,4.5rem) }
+            .hmeta { gap:20px }
+            .hmeta .v { font-size:1.4rem }
+            .ha { flex-direction:column; align-items:flex-start }
+            .bp,.bo { width:100%; text-align:center; padding:14px 20px }
+            .hscroll { display:none }
+
+            /* overview */
+            .ois { height:300px }
+            .ois .ist { top:16px; right:20px; padding:14px 18px }
+            .ois .ist .num { font-size:1.6rem }
+
+            /* video */
+            #vs { height:400px }
+
+            /* location */
+            .dc { grid-template-columns:1fr 1fr }
+            .lh { grid-template-columns:1fr 1fr }
+
+            /* gallery */
+            .gg { gap:6px; margin-top:28px }
+            .g1,.g2,.g3,.g4,.g5,.g6,.g7,.g8 { grid-column:span 12; height:200px; grid-row:span 1 }
+
+            /* amenities */
+            .agrid { grid-template-columns:1fr 1fr; gap:12px }
+            .acard { padding:20px 16px }
+
+            /* interiors */
+            .iimg { height:240px }
+            .itab { padding:12px 18px; font-size:.67rem }
+
+            /* floor plans */
+            .fpimg { height:260px; padding:20px }
+            .fptabs { gap:8px }
+            .fptab { padding:10px 18px; font-size:.67rem }
+
+            /* why */
+            .wg { grid-template-columns:1fr }
+            .wcard { padding:32px 24px }
+
+            /* cta */
+            #cta { padding:72px 5% }
+            .ctaform { flex-direction:column }
+            .ctaform input,.ctaform button { width:100% }
+
+            /* footer */
+            .fg { grid-template-columns:1fr; gap:36px }
+            .fbot { flex-direction:column; text-align:center }
+
+            /* back to top */
+            #btt { bottom:20px; right:20px; width:42px; height:42px }
+        }
+
+        /* ════════════════════════════════════════════
+           RESPONSIVE — Small Mobile  (≤ 480px)
+        ════════════════════════════════════════════ */
+        @media(max-width:480px) {
+            :root { --gap:48px }
+
+            .htitle { font-size:clamp(2.4rem,13vw,3.5rem) }
+            .hsub { font-size:.95rem }
+
+            .hbadge { padding:6px 14px }
+
+            .dc { grid-template-columns:1fr }
+            .lh { grid-template-columns:1fr }
+
+            .agrid { grid-template-columns:1fr }
+
+            .cpills { gap:8px }
+            .cp { font-size:.65rem; padding:8px 14px }
+
+            .itab { padding:10px 14px; font-size:.63rem }
+
+            .fptab { font-size:.63rem; padding:9px 14px }
+
+            .wcard { padding:28px 20px }
+            .wnum { font-size:2.8rem }
+
+            .nl .n { font-size:1.3rem }
+
+            .mmenu a { font-size:2rem }
+
+            .pbox { padding:18px 20px }
+            .pbox .amt { font-size:2rem }
+
+            .dcard { padding:16px }
+            .dcard .km { font-size:1.4rem }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="loader">
+        <div class="llogo">Surbhi Sakshi</div>
+        <div class="lbar">
+            <div></div>
+        </div>
+        <div class="lsub">Premium Builder Floors · Dwarka Expressway</div>
+    </div>
+
+    <div id="cg"></div>
+
+    <div id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <svg viewBox="0 0 24 24">
+            <polyline points="18 15 12 9 6 15" />
+        </svg>
+    </div>
+
+    <div class="modal" id="modal">
+        <span class="mclose" onclick="closeModal()">×</span>
+        <div class="mvid">
+           <div class="mvph">
+    
+    <div class="video-wrapper">
+        <video 
+            src="https://raw.githubusercontent.com/bhuvnesh6/sakshisurbhi/refs/heads/main/img/heroVideo2.mp4" 
+            controls 
+            playsinline
+        ></video>
+    </div>
+
+</div>
+        </div>
+    </div>
+
+    <nav id="nav">
+        <div class="nl"><span class="n">Surbhi Sakshi</span><span class="t">Premium Builder Floors</span></div>
+        <div class="nlinks">
+            <a href="#overview">Overview</a>
+            <a href="#location">Location</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#amenities">Amenities</a>
+            <a href="#interiors">Interiors</a>
+            <a href="#floorplans">Floor Plans</a>
+        </div>
+        <button class="ncta" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Enquire
+            Now</button>
+        <div class="hbg" id="hbg"><span></span><span></span><span></span></div>
+    </nav>
+
+    <div class="mmenu" id="mm">
+        <a href="#overview" onclick="cm()">Overview</a>
+        <a href="#location" onclick="cm()">Location</a>
+        <a href="#gallery" onclick="cm()">Gallery</a>
+        <a href="#amenities" onclick="cm()">Amenities</a>
+        <a href="#interiors" onclick="cm()">Interiors</a>
+        <a href="#floorplans" onclick="cm()">Floor Plans</a>
+        <a href="#cta" onclick="cm()" style="color:var(--gold)">Enquire Now</a>
+    </div>
+
+    <!-- HERO -->
+    <section id="hero">
+        <div class="hbg2"><!-- REPLACE: background-image with your hero exterior photo --></div>
+        <button class="hvb" onclick="openModal()"><svg viewBox="0 0 24 24">
+                <polygon points="5,3 19,12 5,21" />
+            </svg></button>
+        <div class="hc">
+            <div class="hbadge reveal"><span class="dot"></span><span>Now Selling · Dwarka Expressway</span></div>
+            <h1 class="htitle reveal d1">Surbhi<br /><em>Sakshi</em></h1>
+            <p class="hsub reveal d2">Premium Builder Floors · Low-Rise Living Redefined</p>
+            <div class="hmeta reveal d3">
+                <div>
+                    <div class="v">₹92 L*</div>
+                    <div class="l">Starting Price</div>
+                </div>
+                <div>
+                    <div class="v">2 / 3 / 4</div>
+                    <div class="l">BHK Options</div>
+                </div>
+                <div>
+                    <div class="v">450m</div>
+                    <div class="l">To Expressway</div>
+                </div>
+                <div>
+                    <div class="v">6 km</div>
+                    <div class="l">IGI Airport</div>
+                </div>
+            </div>
+            <div class="ha reveal d4">
+                <button class="bp" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Schedule
+                    a Site Visit</button>
+                <button class="bo"
+                    onclick="document.getElementById('floorplans').scrollIntoView({behavior:'smooth'})">View Floor
+                    Plans</button>
+            </div>
+        </div>
+        <div class="hscroll"><span>Scroll</span>
+            <div class="ln"></div>
+        </div>
+    </section>
+
+    <!-- TICKER -->
+    <div class="ticker">
+        <div class="ti">
+            <span>Premium Builder Floors</span><span class="sp">✦</span><span>2 BHK · 3 BHK · 4 BHK</span><span
+                class="sp">✦</span><span>Starting ₹92 Lakhs</span><span class="sp">✦</span><span>Dwarka
+                Expressway</span><span class="sp">✦</span><span>IGI Airport · 6 km</span><span
+                class="sp">✦</span><span>Metro Connectivity</span><span class="sp">✦</span><span>Modular Kitchen ·
+                Imported Marble</span><span class="sp">✦</span><span>Terrace Garden · 24×7 Security</span><span
+                class="sp">✦</span>
+            <span>Premium Builder Floors</span><span class="sp">✦</span><span>2 BHK · 3 BHK · 4 BHK</span><span
+                class="sp">✦</span><span>Starting ₹92 Lakhs</span><span class="sp">✦</span><span>Dwarka
+                Expressway</span><span class="sp">✦</span><span>IGI Airport · 6 km</span><span
+                class="sp">✦</span><span>Metro Connectivity</span><span class="sp">✦</span><span>Modular Kitchen ·
+                Imported Marble</span><span class="sp">✦</span><span>Terrace Garden · 24×7 Security</span><span
+                class="sp">✦</span>
+        </div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <section id="overview">
+        <div class="og">
+            <div class="ois rl">
+                <div class="im"><img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=900"
+                        alt="Exterior" /></div><!-- REPLACE: img-1 -->
+                <div class="ia"><img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600"
+                        alt="Interior" /></div><!-- REPLACE: img-2 -->
+                <div class="ist">
+                    <div class="num">15+</div>
+                    <div class="txt">Premium Amenities</div>
+                </div>
+            </div>
+            <div class="ot rr">
+                <div class="gold-line"><span>Project Overview</span></div>
+                <h2 class="sh">Where Premium<br /><em style="font-style:italic;color:var(--gold)">Meets Purpose</em>
+                </h2>
+                <p>Surbhi Sakshi is a thoughtfully designed premium builder floor community in Delhi's fastest-growing
+                    corridor — the Dwarka Expressway Airport Belt. Each home is crafted for those who demand both luxury
+                    and livability.</p>
+                <div class="cpills">
+                    <div class="cp">2 BHK</div>
+                    <div class="cp">3 BHK</div>
+                    <div class="cp">4 BHK</div>
+                    <div class="cp">Low-Rise</div>
+                    <div class="cp">Builder Floor</div>
+                </div>
+                <div class="pbox">
+                    <div class="from">Starting Price</div>
+                    <div class="amt">₹92 Lakhs <span class="onw">onwards*</span></div>
+                    <div class="note">* Prices subject to availability. Contact sales for current offers.</div>
+                </div>
+                <div class="gold-line"><span>Ideal For</span></div>
+                <div class="ttags">
+                    <span class="tt">✈ Airport Professionals</span><span class="tt">🏢 Corporate Employees</span>
+                    <span class="tt">👨‍👩‍👧 Family Buyers</span><span class="tt">📈 Rental Investors</span><span
+                        class="tt">🔑 End-Use Buyers</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIDEO -->
+    <section id="vs">
+        <div class="vbg"><img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1800" alt="Aerial" />
+        </div><!-- REPLACE: img-3 aerial -->
+        <div class="vc">
+            <div class="gold-line reveal" style="justify-content:center"><span>Experience the Project</span></div>
+            <h2 class="reveal d1">See Your Future Home<br />Come to Life</h2>
+            <div class="pb reveal d2" onclick="openModal()"><svg viewBox="0 0 24 24">
+                    <polygon points="5,3 19,12 5,21" />
+                </svg></div>
+        </div>
+    </section>
+
+    <!-- LOCATION -->
+    <section id="location">
+        <div class="li">
+            <div class="section-header" style="margin-bottom:56px">
+                <div class="gold-line reveal"><span>Strategic Location</span></div>
+                <h2 class="sh2 reveal d1">Placed Where <em>Delhi Moves</em></h2>
+            </div>
+            <div class="lg">
+                <div>
+                    <div class="lmp rs">
+                        <img src="img/DwarkaExpresswayNewDelhi.jpg"
+                            alt="Location" /><!-- REPLACE: map/location image -->
+                        <div class="mo">
+                            <div style="font-size:2rem;margin-bottom:6px">📍</div><span>Dwarka Expressway · New
+                                Delhi</span>
+                        </div>
+                    </div>
+                    <div class="lh reveal d2">
+                        <div class="lhi">
+                            <div class="big">450m</div>
+                            <div class="sm">To Expressway</div>
+                        </div>
+                        <div class="lhi">
+                            <div class="big">6 km</div>
+                            <div class="sm">IGI Airport</div>
+                        </div>
+                        <div class="lhi">
+                            <div class="big">3.2 km</div>
+                            <div class="sm">Metro Station</div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="dc">
+                        <div class="dcard reveal d1">
+                            <div class="ic">🛣️</div>
+                            <div class="pl">Dwarka Expressway</div>
+                            <div class="km">450 <span style="font-size:1rem">m</span></div>
+                            <div class="lb">Connectivity</div>
+                        </div>
+                        <div class="dcard reveal d2">
+                            <div class="ic">✈️</div>
+                            <div class="pl">IGI Airport</div>
+                            <div class="km">6 <span style="font-size:1rem">km</span></div>
+                            <div class="lb">Airport</div>
+                        </div>
+                        <div class="dcard reveal d3">
+                            <div class="ic">🚂</div>
+                            <div class="pl">New Bijwasan Station</div>
+                            <div class="km">2 <span style="font-size:1rem">km</span></div>
+                            <div class="lb">Railway</div>
+                        </div>
+                        <div class="dcard reveal d4">
+                            <div class="ic">🚇</div>
+                            <div class="pl">Dwarka Sec 25 Metro</div>
+                            <div class="km">3.2 <span style="font-size:1rem">km</span></div>
+                            <div class="lb">Metro</div>
+                        </div>
+                        <div class="dcard reveal d5">
+                            <div class="ic">🏬</div>
+                            <div class="pl">Pacific / Ansal / Ambience</div>
+                            <div class="km">4–8 <span style="font-size:1rem">km</span></div>
+                            <div class="lb">Shopping Malls</div>
+                        </div>
+                        <div class="dcard reveal d6">
+                            <div class="ic">🏥</div>
+                            <div class="pl">Park & Manipal Hospital</div>
+                            <div class="km">3–4.5 <span style="font-size:1rem">km</span></div>
+                            <div class="lb">Healthcare</div>
+                        </div>
+                        <div class="dcard reveal d1">
+                            <div class="ic">🏫</div>
+                            <div class="pl">KV BSF · Mount Carmel</div>
+                            <div class="km">3–4 <span style="font-size:1rem">km</span></div>
+                            <div class="lb">Schools</div>
+                        </div>
+                        <div class="dcard reveal d2">
+                            <div class="ic">🎓</div>
+                            <div class="pl">Sri Venkateshwar School</div>
+                            <div class="km">3–4 <span style="font-size:1rem">km</span></div>
+                            <div class="lb">Education</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery">
+        <div class="gi">
+            <div class="section-header" style="margin-bottom:0">
+                <div class="gold-line reveal"><span>Project Gallery</span></div>
+                <h2 class="sh2 reveal d1">Crafted in Every <em>Detail</em></h2>
+            </div>
+            <div class="gg">
+                <!-- REPLACE each image src with your actual project photos -->
+                <div class="gitem g1 rs"><img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=900"
+                        alt="Living Room" /></div><!-- img-4 -->
+                <div class="gitem g2 reveal d1"><img
+                        src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=700" alt="Kitchen" /></div>
+                <!-- img-5 -->
+                <div class="gitem g3 reveal d2"><img
+                        src="https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?w=700" alt="Bedroom" /></div>
+                <!-- img-6 -->
+                <div class="gitem g4 reveal d1"><img
+                        src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=700" alt="Bathroom" /></div>
+                <!-- img-7 -->
+                <div class="gitem g5 reveal d2"><img
+                        src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=700" alt="Terrace" /></div>
+                <!-- img-8 -->
+                <div class="gitem g6 reveal d3"><img
+                        src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=700" alt="Exterior" /></div>
+                <!-- img-9 -->
+                <div class="gitem g7 reveal d1"><img
+                        src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=900" alt="Common Area" />
+                </div><!-- img-10 -->
+                <div class="gitem g8 reveal d2"><img
+                        src="https://images.unsplash.com/photo-1600573472556-e636c2acda88?w=900" alt="Balcony" /></div>
+                <!-- img-11 -->
+            </div>
+            <div class="gcta reveal">
+                <button class="bp" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Request
+                    Full Photo Brochure</button>
+                <p>15+ high-resolution images & walkthrough video available on request</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- AMENITIES -->
+    <section id="amenities">
+        <div class="ai">
+            <div class="gold-line reveal"><span>Amenities</span></div>
+            <h2 class="sh2 reveal d1">Everything You Need. <em>All in One Place.</em></h2>
+            <div class="agrid">
+                <div class="acard reveal d1">
+                    <div class="acat">Security</div>
+                    <div class="aicon">📹</div>
+                    <div class="aname">24×7 CCTV Surveillance</div>
+                    <div class="adet">Gated Secure Living</div>
+                </div>
+                <div class="acard reveal d2">
+                    <div class="acat">Security</div>
+                    <div class="aicon">👮</div>
+                    <div class="aname">Security Guard</div>
+                    <div class="adet">Round the clock</div>
+                </div>
+                <div class="acard reveal d3">
+                    <div class="acat">Security</div>
+                    <div class="aicon">🔒</div>
+                    <div class="aname">Secured Boundary Wall</div>
+                    <div class="adet">Full Perimeter</div>
+                </div>
+                <div class="acard reveal d4">
+                    <div class="acat">Infrastructure</div>
+                    <div class="aicon">🛗</div>
+                    <div class="aname">Modern Lift Facility</div>
+                    <div class="adet">High-speed elevator</div>
+                </div>
+                <div class="acard reveal d5">
+                    <div class="acat">Parking</div>
+                    <div class="aicon">🚗</div>
+                    <div class="aname">Reserved Car Parking</div>
+                    <div class="adet">Dedicated spot per unit</div>
+                </div>
+                <div class="acard reveal d6">
+                    <div class="acat">Utilities</div>
+                    <div class="aicon">⚡</div>
+                    <div class="aname">40% Power Backup</div>
+                    <div class="adet">Partial backup system</div>
+                </div>
+                <div class="acard reveal d1">
+                    <div class="acat">Utilities</div>
+                    <div class="aicon">💧</div>
+                    <div class="aname">24×7 Water Supply</div>
+                    <div class="adet">Continuous supply</div>
+                </div>
+                <div class="acard reveal d2">
+                    <div class="acat">Roads</div>
+                    <div class="aicon">🛣️</div>
+                    <div class="aname">RCC & Cemented Roads</div>
+                    <div class="adet">Internal road network</div>
+                </div>
+                <div class="acard reveal d3">
+                    <div class="acat">Utilities</div>
+                    <div class="aicon">🔧</div>
+                    <div class="aname">Sewerage System</div>
+                    <div class="adet">Fully connected</div>
+                </div>
+                <div class="acard reveal d4">
+                    <div class="acat">Lifestyle</div>
+                    <div class="aicon">🌿</div>
+                    <div class="aname">Terrace Garden</div>
+                    <div class="adet">Landscaped green space</div>
+                </div>
+                <div class="acard reveal d5">
+                    <div class="acat">Lifestyle</div>
+                    <div class="aicon">🛝</div>
+                    <div class="aname">Children Play Area</div>
+                    <div class="adet">Family friendly design</div>
+                </div>
+                <div class="acard reveal d6">
+                    <div class="acat">Safety</div>
+                    <div class="aicon">🔥</div>
+                    <div class="aname">Fire Safety System</div>
+                    <div class="adet">Fully installed & certified</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERIORS -->
+    <section id="interiors">
+        <div class="ii">
+            <div class="gold-line reveal"><span>Interior Specifications</span></div>
+            <h2 class="sh2 reveal d1">Finishes That Tell <em>a Luxury Story</em></h2>
+            <div class="itabs">
+                <div class="itab a" data-p="kitchen">Kitchen</div>
+                <div class="itab" data-p="bath">Bathroom</div>
+                <div class="itab" data-p="living">Living Area</div>
+                <div class="itab" data-p="bed">Bedroom</div>
+                <div class="itab" data-p="terrace">Terrace</div>
+            </div>
+            <div class="ipanel a" id="p-kitchen">
+                <div class="isl">
+                    <div class="sr reveal"><span class="sn">Layout</span><span class="sv">L-Shaped · Modular
+                            Fitted</span></div>
+                    <div class="sr reveal d1"><span class="sn">Cabinets</span><span class="sv">Premium High-Quality
+                            Finish</span></div>
+                    <div class="sr reveal d2"><span class="sn">Sink</span><span class="sv">Modern Designer Sink</span>
+                    </div>
+                    <div class="sr reveal d3"><span class="sn">Lighting</span><span class="sv">Designer Under-Cabinet
+                            Lights</span></div>
+                    <div class="sr reveal d4"><span class="sn">Countertop</span><span class="sv">Premium Stone
+                            Surface</span></div>
+                </div>
+                <div class="iimg rr"><img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800"
+                        alt="Kitchen" /></div><!-- REPLACE: img-12 kitchen -->
+            </div>
+            <div class="ipanel" id="p-bath">
+                <div class="isl">
+                    <div class="sr reveal"><span class="sn">Flooring</span><span class="sv">Imported Marble
+                            Finish</span></div>
+                    <div class="sr reveal d1"><span class="sn">WC</span><span class="sv">Wall Mounted · Modern
+                            Design</span></div>
+                    <div class="sr reveal d2"><span class="sn">Fittings</span><span class="sv">Concealed Premium
+                            Fittings</span></div>
+                    <div class="sr reveal d3"><span class="sn">Sanitary Ware</span><span class="sv">Branded Premium
+                            Fixtures</span></div>
+                </div>
+                <div class="iimg rr"><img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800"
+                        alt="Bathroom" /></div><!-- REPLACE: img-13 bathroom -->
+            </div>
+            <div class="ipanel" id="p-living">
+                <div class="isl">
+                    <div class="sr reveal"><span class="sn">Ceiling</span><span class="sv">Designer POP Ceiling</span>
+                    </div>
+                    <div class="sr reveal d1"><span class="sn">Flooring</span><span class="sv">Premium High-Quality
+                            Tiles</span></div>
+                    <div class="sr reveal d2"><span class="sn">Layout</span><span class="sv">Open Spacious Design</span>
+                    </div>
+                </div>
+                <div class="iimg rr"><img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800"
+                        alt="Living Room" /></div><!-- REPLACE: img-14 living -->
+            </div>
+            <div class="ipanel" id="p-bed">
+                <div class="isl">
+                    <div class="sr reveal"><span class="sn">Flooring</span><span class="sv">Premium Wooden
+                            Flooring</span></div>
+                    <div class="sr reveal d1"><span class="sn">Balcony</span><span class="sv">Attached · Natural
+                            Light</span></div>
+                    <div class="sr reveal d2"><span class="sn">Ventilation</span><span class="sv">Natural Air Flow
+                            Design</span></div>
+                </div>
+                <div class="iimg rr"><img src="https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?w=800"
+                        alt="Bedroom" /></div><!-- REPLACE: img-15 bedroom -->
+            </div>
+            <div class="ipanel" id="p-terrace">
+                <div class="isl">
+                    <div class="sr reveal"><span class="sn">Landscaping</span><span class="sv">Artificial Turf · Green
+                            Finish</span></div>
+                    <div class="sr reveal d1"><span class="sn">Space</span><span class="sv">Open Usable Rooftop</span>
+                    </div>
+                    <div class="sr reveal d2"><span class="sn">Garden</span><span class="sv">Terrace Garden
+                            Design</span></div>
+                </div>
+                <div class="iimg rr"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800"
+                        alt="Terrace" /></div><!-- REPLACE: img-16 terrace -->
+            </div>
+        </div>
+    </section>
+
+    <!-- FLOOR PLANS -->
+    <section id="floorplans">
+        <div class="fpi">
+            <div class="gold-line reveal"><span>Floor Plans</span></div>
+            <h2 class="sh2 reveal d1">Find Your <em>Perfect Layout</em></h2>
+            <div class="fptabs">
+                <div class="fptab a" data-fp="2b">2 BHK</div>
+                <div class="fptab" data-fp="3b">3 BHK</div>
+                <div class="fptab" data-fp="4b">4 BHK</div>
+            </div>
+            <div class="fpc a" id="fp-2b">
+                <div class="fpimg rl"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600"
+                        alt="2BHK Plan" style="object-fit:contain;filter:sepia(.25) opacity(.85)" /></div>
+                <!-- REPLACE: 2BHK floor plan -->
+                <div class="fpd rr">
+                    <div class="gold-line"><span>2 BHK Configuration</span></div>
+                    <h3>2 Bedroom<br />Premium Floor</h3>
+                    <div class="fpp">Starting ₹92 Lakhs*</div>
+                    <table class="fptbl">
+                        <tr>
+                            <td>Bedrooms</td>
+                            <td>2 (Master + Guest)</td>
+                        </tr>
+                        <tr>
+                            <td>Bathrooms</td>
+                            <td>2 Attached</td>
+                        </tr>
+                        <tr>
+                            <td>Kitchen</td>
+                            <td>Modular L-Shaped</td>
+                        </tr>
+                        <tr>
+                            <td>Balcony</td>
+                            <td>Attached to Master</td>
+                        </tr>
+                        <tr>
+                            <td>Parking</td>
+                            <td>1 Reserved Slot</td>
+                        </tr>
+                        <tr>
+                            <td>Type</td>
+                            <td>Builder Floor · Low-Rise</td>
+                        </tr>
+                    </table>
+                    <button class="bp" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Get
+                        Detailed Brochure</button>
+                </div>
+            </div>
+            <div class="fpc" id="fp-3b">
+                <div class="fpimg rl"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600"
+                        alt="3BHK Plan" style="object-fit:contain;filter:sepia(.25) opacity(.85)" /></div>
+                <!-- REPLACE: 3BHK floor plan -->
+                <div class="fpd rr">
+                    <div class="gold-line"><span>3 BHK Configuration</span></div>
+                    <h3>3 Bedroom<br />Premium Floor</h3>
+                    <div class="fpp">Price on Request</div>
+                    <table class="fptbl">
+                        <tr>
+                            <td>Bedrooms</td>
+                            <td>3 (Master + 2 Rooms)</td>
+                        </tr>
+                        <tr>
+                            <td>Bathrooms</td>
+                            <td>3 Attached</td>
+                        </tr>
+                        <tr>
+                            <td>Kitchen</td>
+                            <td>Modular L-Shaped</td>
+                        </tr>
+                        <tr>
+                            <td>Balcony</td>
+                            <td>2 Balconies</td>
+                        </tr>
+                        <tr>
+                            <td>Parking</td>
+                            <td>1 Reserved Slot</td>
+                        </tr>
+                        <tr>
+                            <td>Type</td>
+                            <td>Builder Floor · Low-Rise</td>
+                        </tr>
+                    </table>
+                    <button class="bp" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Get
+                        Detailed Brochure</button>
+                </div>
+            </div>
+            <div class="fpc" id="fp-4b">
+                <div class="fpimg rl"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600"
+                        alt="4BHK Plan" style="object-fit:contain;filter:sepia(.25) opacity(.85)" /></div>
+                <!-- REPLACE: 4BHK floor plan -->
+                <div class="fpd rr">
+                    <div class="gold-line"><span>4 BHK Configuration</span></div>
+                    <h3>4 Bedroom<br />Premium Floor</h3>
+                    <div class="fpp">Price on Request</div>
+                    <table class="fptbl">
+                        <tr>
+                            <td>Bedrooms</td>
+                            <td>4 (Master + 3 Rooms)</td>
+                        </tr>
+                        <tr>
+                            <td>Bathrooms</td>
+                            <td>4 Attached</td>
+                        </tr>
+                        <tr>
+                            <td>Kitchen</td>
+                            <td>Modular L-Shaped</td>
+                        </tr>
+                        <tr>
+                            <td>Balcony</td>
+                            <td>2–3 Balconies</td>
+                        </tr>
+                        <tr>
+                            <td>Parking</td>
+                            <td>2 Reserved Slots</td>
+                        </tr>
+                        <tr>
+                            <td>Type</td>
+                            <td>Builder Floor · Low-Rise</td>
+                        </tr>
+                    </table>
+                    <button class="bp" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Get
+                        Detailed Brochure</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY -->
+    <section id="why">
+        <div class="wi">
+            <div style="text-align:center">
+                <div class="gold-line reveal" style="justify-content:center"><span>Why Surbhi Sakshi</span></div>
+                <h2 class="sh2 reveal d1" style="text-align:center">Six Reasons to <em>Choose Wisely</em></h2>
+            </div>
+            <div class="wg">
+                <div class="wcard reveal d1">
+                    <div class="wnum">01</div>
+                    <div class="wtt">Unmatched Connectivity</div>
+                    <div class="wd">450m from Dwarka Expressway, 6km to IGI Airport, 3.2km to Metro — Delhi at your
+                        doorstep, every single day.</div>
+                </div>
+                <div class="wcard reveal d2">
+                    <div class="wnum">02</div>
+                    <div class="wtt">Premium Interiors</div>
+                    <div class="wd">Imported marble bathrooms, modular kitchens, wooden flooring, POP ceilings — luxury
+                        lives in every corner.</div>
+                </div>
+                <div class="wcard reveal d3">
+                    <div class="wnum">03</div>
+                    <div class="wtt">High Rental Yield</div>
+                    <div class="wd">Airport belt location ensures strong rental demand from aviation professionals and
+                        corporate travellers year-round.</div>
+                </div>
+                <div class="wcard reveal d4">
+                    <div class="wnum">04</div>
+                    <div class="wtt">Low-Rise Privacy</div>
+                    <div class="wd">Builder floor living means no cramped tower corridors — your floor, your home, your
+                        exclusive private space.</div>
+                </div>
+                <div class="wcard reveal d5">
+                    <div class="wnum">05</div>
+                    <div class="wtt">Ready Amenities</div>
+                    <div class="wd">12 curated amenities including landscaped terrace, play area, CCTV, power backup,
+                        and 24×7 water supply.</div>
+                </div>
+                <div class="wcard reveal d6">
+                    <div class="wnum">06</div>
+                    <div class="wtt">Accessible Price Point</div>
+                    <div class="wd">Premium construction at an accessible ₹92 Lakhs entry — true value in Delhi's most
+                        sought-after corridor.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="cta">
+        <div style="position:relative;z-index:2">
+            <div class="gold-line reveal" style="justify-content:center"><span>Schedule a Visit</span></div>
+            <h2 class="ctah reveal d1">Your Premium<br />Home Awaits You</h2>
+            <p class="ctas reveal d2">Fill in your details and our sales team will reach out within 2 hours with
+                exclusive pricing and site visit slots.</p>
+            <div class="ctaform reveal d3">
+                <input type="text" placeholder="Full Name" />
+                <input type="tel" placeholder="Mobile Number" />
+                <input type="text" placeholder="Configuration (2/3/4 BHK)" />
+                 <button type="button" onclick="sendWhatsAppQuery()">Book Site Visit</button>
+            </div>
+            <p class="ctanote reveal d4">✦ No spam. Your data is completely private. ✦</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="fg">
+            <div class="fb">
+                <div class="fn">Surbhi Sakshi</div>
+                <div class="ft">Premium Builder Floors · Dwarka Expressway</div>
+                <p>A premium low-rise residential community in Delhi's most connected zone — where airport
+                    professionals, families, and investors find their perfect home.</p>
+            </div>
+            <div class="fc">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#overview">Project Overview</a></li>
+                    <li><a href="#location">Location Map</a></li>
+                    <li><a href="#gallery">Photo Gallery</a></li>
+                    <li><a href="#amenities">Amenities</a></li>
+                    <li><a href="#interiors">Interior Specs</a></li>
+                    <li><a href="#floorplans">Floor Plans</a></li>
+                </ul>
+            </div>
+            <div class="fc">
+                <h4>Contact Sales</h4>
+                <ul>
+                    <li><a href="tel:+917303515710">📞 +91 73035 15710</a></li>
+                    <li><a href="mailto:Nisharesidencey@gmail.com">✉ nisharesidencey@gmail.com</a></li>
+                    <li><a href="#location">📍 Dwarka Expressway, Delhi</a></li>
+                </ul>
+                <div style="margin-top:24px">
+                    <h4 style="margin-bottom:14px">Configurations</h4>
+                    <ul>
+                        <li><a href="#floorplans">2 BHK — ₹92 Lakhs+</a></li>
+                        <li><a href="#floorplans">3 BHK — On Request</a></li>
+                        <li><a href="#floorplans">4 BHK — On Request</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="fbot">
+            <p>© 2025 <span style="color:var(--gold)">Surbhi Sakshi</span>. All rights reserved.</p>
+            <p>* Prices subject to change. All details are indicative. RERA registered.</p>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('load', () => { setTimeout(() => document.getElementById('loader').classList.add('done'), 1800) });
+
+        const cg = document.getElementById('cg');
+        document.addEventListener('mousemove', e => { cg.style.left = e.clientX + 'px'; cg.style.top = e.clientY + 'px' });
+
+        const nav = document.getElementById('nav'), btt = document.getElementById('btt');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('on', window.scrollY > 60);
+            btt.classList.toggle('s', window.scrollY > 400);
+        });
+
+        const hbg = document.getElementById('hbg'), mm = document.getElementById('mm');
+        hbg.addEventListener('click', () => { hbg.classList.toggle('o'); mm.classList.toggle('o'); document.body.style.overflow = mm.classList.contains('o') ? 'hidden' : '' });
+        function cm() { hbg.classList.remove('o'); mm.classList.remove('o'); document.body.style.overflow = '' }
+
+        const obs = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting) e.target.classList.add('in') }) }, { threshold: .12 });
+        document.querySelectorAll('.reveal,.rl,.rr,.rs').forEach(el => obs.observe(el));
+
+        document.querySelectorAll('.itab').forEach(t => {
+            t.addEventListener('click', () => {
+                document.querySelectorAll('.itab').forEach(x => x.classList.remove('a'));
+                document.querySelectorAll('.ipanel').forEach(x => x.classList.remove('a'));
+                t.classList.add('a');
+                const p = document.getElementById('p-' + t.dataset.p);
+                p.classList.add('a');
+                p.querySelectorAll('.reveal,.rr').forEach(el => { el.classList.remove('in'); setTimeout(() => el.classList.add('in'), 50) });
+            });
+        });
+
+        document.querySelectorAll('.fptab').forEach(t => {
+            t.addEventListener('click', () => {
+                document.querySelectorAll('.fptab').forEach(x => x.classList.remove('a'));
+                document.querySelectorAll('.fpc').forEach(x => x.classList.remove('a'));
+                t.classList.add('a');
+                const fp = document.getElementById('fp-' + t.dataset.fp);
+                fp.classList.add('a');
+                fp.querySelectorAll('.rl,.rr').forEach(el => { el.classList.remove('in'); setTimeout(() => el.classList.add('in'), 50) });
+            });
+        });
+
+        function openModal() {
+    const modal = document.getElementById('modal');
+    const video = modal.querySelector('video');
+
+    modal.classList.add('o');
+    document.body.style.overflow = 'hidden';
+
+    video.currentTime = 0; // start from beginning
+    video.play(); // autoplay
+}
+
+function closeModal() {
+    const modal = document.getElementById('modal');
+    const video = modal.querySelector('video');
+
+    modal.classList.remove('o');
+    document.body.style.overflow = '';
+
+    video.pause(); // stop when closing
+}
+        function closeModal() { document.getElementById('modal').classList.remove('o'); document.body.style.overflow = '' }
+        document.getElementById('modal').addEventListener('click', function (e) { if (e.target === this) closeModal() });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal() });
+
+        window.addEventListener('scroll', () => {
+            const bg = document.querySelector('.hbg2');
+            if (bg) bg.style.transform = `translateY(${window.pageYOffset * .32}px)`;
+        });
+
+        const secs = document.querySelectorAll('section[id]'), nls = document.querySelectorAll('.nlinks a');
+        window.addEventListener('scroll', () => {
+            let cur = ''; secs.forEach(s => { if (window.scrollY >= s.offsetTop - 200) cur = s.id });
+            nls.forEach(a => { a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--gold)' : '' });
+        });
+    
+        function sendWhatsAppQuery() {
+
+    var name = document.getElementById("fullName").value.trim();
+    var mobile = document.getElementById("mobileNumber").value.trim();
+    var config = document.getElementById("configuration").value.trim();
+
+    if(name === "" || mobile === "" || config === ""){
+        alert("Please fill all details before booking.");
+        return;
+    }
+
+    var phoneNumber = "917303515710"; // Your WhatsApp number
+
+    var message = 
+        "Hello,\n\n" +
+        "I am interested in Surbhi Sakshi Project.\n\n" +
+        "Name: " + name + "\n" +
+        "Mobile: " + mobile + "\n" +
+        "Configuration Interested In: " + config + "\n\n" +
+        "Please share more details and schedule a site visit.";
+
+    var encodedMessage = encodeURIComponent(message);
+
+    var url = "https://wa.me/" + phoneNumber + "?text=" + encodedMessage;
+
+    window.open(url, "_blank");
+}
+    
+    </script>
+</body>
+
+
+</html>
